@@ -1,6 +1,6 @@
 # Usage
 
-In a file named `.vrf`, enter the public key on the first line, and the 25 word mnemonic on the second line, separated by spaces.
+Keys in environment vars: VRFPUB and VRFPRIV (mnemonic).
 
 ```sh
 vrfprove [round] [blockseed]

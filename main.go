@@ -16,7 +16,6 @@ import (
 )
 
 func main() {
-	fmt.Println("Started.")
 	var pubKeyStr = os.Getenv("VRFPUB")
 	var pubKey, _ = types.DecodeAddress(pubKeyStr)
 	var vrfMnemonic = os.Getenv("VRFPRIV")
