@@ -1,11 +1,14 @@
 # Usage
 
-Keys in environment vars: VRFPUB and VRFPRIV (mnemonic).
+Mnemonic for private key in environment var VRFPRIV. Round and blockseed in base32 format.
 
 ```sh
 vrfprove [round] [blockseed]
 
 ```
 
-Runs VRF proof and outputs the base64 encoded hash and proof to STDOUT separated by a space.
+Runs VRF proof and outputs the base32 encoded hash and proof to STDOUT separated by a space.
 
+# Build
+
+Edit `go.mod` to specify actual `go-algorand` source directory.
