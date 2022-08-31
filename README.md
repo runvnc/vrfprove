@@ -7,7 +7,7 @@ vrfprove [round] [blockseed]
 
 ```
 
-Runs VRF proof and outputs the base32 encoded hash and proof to STDOUT separated by a space.
+Runs VRF proof and outputs the base32 encoded proof and hash to STDOUT separated by a space.
 
 # Build
 
