@@ -14,7 +14,6 @@ import (
 
 func toVrfPrivKey(phrase string) (crypto.VrfPrivkey) {
   pk, err := mnemonic.ToPrivateKey(phrase)
-
   if err != nil { panic("invalid vrf mnemonic: %v") }
 
   var vrfPK crypto.VrfPrivkey
@@ -29,20 +28,28 @@ func (m Msg) ToBeHashed() (protocol.HashID, []byte) {
   return id, sum[:]
 }
 
-func main() {
-  sk := toVrfPrivKey(os.Getenv("VRFPRIV"))
-  round, err := strconv.Atoi(os.Args[1])
-  seedStr := os.Args[2]
-
+func getRoundSeedHashable(roundStr, seedStr string) (Msg) {
   var block_seed [32]byte
+  var buff = make([]byte, 32+8)
+ 
+  round, err := strconv.Atoi(roundStr)
+  binary.BigEndian.PutUint64(buff, uint64(round))
+
   _, err = base32.StdEncoding.Decode(block_seed[:], []byte(seedStr))
   if err != nil { panic("Invalid block seed") }
 
-  var buff = make([]byte, 32+8)
-  binary.BigEndian.PutUint64(buff, uint64(round))
   copy(buff[8:], block_seed[:])
 
-  vrfProof, ok := sk.Prove(Msg(buff[:]))
+  return Msg(buff[:])
+}
+
+func main() {
+  vrfPrivKey := toVrfPrivKey(os.Getenv("VRFPRIV"))
+
+  msg := getRoundSeedHashable(os.Args[1], os.Args[2])
+
+  vrfProof, ok := vrfPrivKey.Prove(msg)
+
   if !ok { panic("Proof failed.") }
 
   vrfHash, _ := vrfProof.Hash()
