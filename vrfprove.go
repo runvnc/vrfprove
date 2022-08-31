@@ -23,10 +23,6 @@ func toVrfPrivKey(phrase string) (crypto.VrfPrivkey) {
 }
 
 func getPublicKey(s string) (crypto.VrfPubkey) {
-  //var key [32]byte
-  s = "SJBLLZUWHP6FP27NK47CRZM33ANIDNPUWZIAB3ZGMPD4GEIBHKVVPXMVBQ"
-  fmt.Printf("convert public key to byte: [%s] length: %d\n",s, len(s))
-  //addr, err := base32.StdEncoding.DecodeString(s)
   key, err := types.DecodeAddress(s)
   
   if err != nil { 
