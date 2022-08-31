@@ -42,8 +42,8 @@ func main() {
   binary.BigEndian.PutUint64(buff, uint64(round))
   copy(buff[8:], block_seed[:])
 
-  vrfProof, err1 := sk.Prove(Msg(buff[:]))
-  if err1 != nil { panic("Proof failed.") }
+  vrfProof, ok := sk.Prove(Msg(buff[:]))
+  if !ok { panic("Proof failed.") }
 
   vrfHash, _ := vrfProof.Hash()
   
