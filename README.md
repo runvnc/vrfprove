@@ -3,11 +3,11 @@
 Mnemonic for private key in environment var VRFPRIV. Round and blockseed in base32 format.
 
 ```sh
-vrfprove [round] [blockseed]
+vrfprove [vrf_public_key] [round] [blockseed]
 
 ```
 
-Runs VRF proof and outputs the base32 encoded proof and hash to STDOUT separated by a space.
+Runs VRF proof and writes the base32 encoded proof, hash, and random output to STDOUT separated by a space.
 
 # Build
 
