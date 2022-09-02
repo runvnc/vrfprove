@@ -7,7 +7,7 @@ vrfprove [vrf_public_key] [round] [blockseed]
 
 ```
 
-Runs VRF proof and writes the base32 encoded proof, hash, and random output to STDOUT separated by a space.
+Runs VRF proof and writes the base32 encoded proof and random output to STDOUT separated by a space.
 
 # Build
 

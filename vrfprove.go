@@ -67,13 +67,10 @@ func main() {
 
   if !ok { panic("Proof failed.") }
 
-  vrfHash, _ := vrfProof.Hash()
- 
-	ok1, output := getPublicKey(os.Args[1]).Verify(vrfProof, Msg(msg))
+  ok1, output := getPublicKey(os.Args[1]).Verify(vrfProof, Msg(msg))
   if !ok1 { panic("Verification failed.") }
  
   fmt.Println(base32.StdEncoding.EncodeToString(vrfProof[:]),
-              base32.StdEncoding.EncodeToString(vrfHash[:]),
               base32.StdEncoding.EncodeToString(output[:]))
 }
 
